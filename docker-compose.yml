@@ -1,0 +1,30 @@
+version: '3.9'
+volumes:
+    notebooks:
+        driver_opts:
+            type: cifs
+            o: "username=Xarli3,password=h1guma"
+            device: "//192.168.1.137/public/jupyter/notebooks"
+services:          
+    server:  
+        
+        build: .        
+        shm_size: '64gb' 
+        ulimits: 
+            memlock: -1
+        user: docker
+        ipc: host
+        ports: 
+            - "8888:8888"
+    # entrypoint: /bin/bash
+        command: [jupyter,lab,--ip=0.0.0.0,--NotebookApp.allow_origin='https://colab.research.google.com']
+        volumes: 
+            - "notebooks:/home/notebooks"
+        working_dir: /home/notebooks         
+        deploy:
+            resources:
+                reservations:
+                    devices: 
+                     - capabilities: [gpu,utility,compute]
+      
+ 

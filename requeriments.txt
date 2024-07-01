@@ -1,0 +1,13 @@
+--find-links https://download.pytorch.org/whl/cu118
+ipympl
+jupyterlab==4.1.7
+tensorflow
+torch 
+torchvision 
+torchaudio  
+scikit-learn
+tensorboard
+tornado
+jupyterlab-tensorboard-pro
+jupyterlab_nvdashboard
+
