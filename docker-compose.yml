@@ -3,8 +3,10 @@ volumes:
     notebooks:
         driver_opts:
             type: cifs
-            o: "username=Xarli3,password=h4kuryu"
+            o: "username=Xarli3,password=h4kuryu,uid=1000,gid=1000"
             device: "//192.168.1.122/public/jupyter/notebooks"
+        
+            
 services:          
     server:  
         
@@ -19,8 +21,8 @@ services:
     # entrypoint: /bin/bash
         command: [jupyter,lab,--ip=0.0.0.0,--NotebookApp.allow_origin='https://colab.research.google.com']
         volumes: 
-            - "notebooks:/home/notebooks"
-        working_dir: /home/notebooks         
+            - "notebooks:/home/docker/notebooks"
+        working_dir: /home/docker/notebooks         
         deploy:
             resources:
                 reservations:

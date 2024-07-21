@@ -1,6 +1,7 @@
 FROM nvcr.io/nvidia/tensorrt:24.06-py3
 RUN echo 'root:root' | chpasswd
 RUN useradd -ms /bin/bash docker
+RUN echo 'docker:docker' | chpasswd
 # pYTHON 3.10
  ENV DEBIAN_FRONTEND noninteractive
  RUN apt update && apt install -y tcl
