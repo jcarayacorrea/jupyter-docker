@@ -10,4 +10,5 @@ tensorboard
 tornado
 jupyterlab-tensorboard-pro
 jupyterlab_nvdashboard
+poetry
 
