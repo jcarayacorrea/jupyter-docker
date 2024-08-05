@@ -26,9 +26,13 @@ RUN mkdir /home/docker/nvm
 RUN curl --silent -o- https://raw.githubusercontent.com/creationix/nvm/master/install.sh | bash \
     && . $NVM_DIR/nvm.sh \
     && nvm install --lts
-# Install asdf
-RUN git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.14.0
-ENV PATH=$HOME/.asdf/asdf.sh:$HOME/.asdf/completions/asdf.bash:$PATH
+# Install CONDA
+ENV CONDA_DIR /home/docker/conda
+RUN curl https://repo.anaconda.com/archive/Anaconda3-2024.06-1-Linux-x86_64.sh -o /home/docker/conda_installer.sh
+RUN bash /home/docker/conda_installer.sh -b -p ${CONDA_DIR}
+ENV PATH=/home/docker/conda/bin:$PATH
+RUN conda update conda
+
 # Upgrade PIP
 RUN python -m pip install --upgrade pip
 # PIP dependencies
