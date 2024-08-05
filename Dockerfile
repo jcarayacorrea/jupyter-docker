@@ -1,7 +1,6 @@
 FROM nvcr.io/nvidia/tensorrt:24.06-py3
 RUN echo 'root:root' | chpasswd
-RUN useradd -ms /bin/bash docker
-RUN echo 'docker:docker' | chpasswd
+RUN useradd -m docker && echo "docker:docker" | chpasswd && adduser docker sudo
 # pYTHON 3.10
  ENV DEBIAN_FRONTEND noninteractive
  RUN apt update && apt install -y tcl
@@ -27,6 +26,9 @@ RUN mkdir /home/docker/nvm
 RUN curl --silent -o- https://raw.githubusercontent.com/creationix/nvm/master/install.sh | bash \
     && . $NVM_DIR/nvm.sh \
     && nvm install --lts
+# Install asdf
+RUN git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.14.0
+ENV PATH=$HOME/.asdf/asdf.sh:$HOME/.asdf/completions/asdf.bash:$PATH
 # Upgrade PIP
 RUN python -m pip install --upgrade pip
 # PIP dependencies
