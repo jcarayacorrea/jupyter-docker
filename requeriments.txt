@@ -1,6 +1,6 @@
 --find-links https://download.pytorch.org/whl/cu118
 ipympl
-jupyterlab==4.1.7
+jupyterlab==4.2.3
 tensorflow
 torch 
 torchvision 
@@ -10,5 +10,4 @@ tensorboard
 tornado
 jupyterlab-tensorboard-pro
 jupyterlab_nvdashboard
-poetry
 
